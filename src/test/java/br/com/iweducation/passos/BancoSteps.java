@@ -18,7 +18,6 @@ public class BancoSteps {
 
     @Given("^que as contas sao do \"(.*?)\"$")
     public void que_as_contas_sao_do(String nome, List<Conta> listaDeContas) throws Throwable {
-          // Definição do banco e associando as contas
           banco = new Banco(nome, listaDeContas);
 
     }
