@@ -12,21 +12,22 @@ public class TransferenciaSteps {
 	private Conta favorecido;
 	private Conta titular;
 
-	@Dado("^a conta do titular \"(.*?)\" de saldo(\\d+)$")
+	
+	@Dado("^a conta do titular \"([^\"]*)\" de saldo (\\d+)$")
 	public void criaTitular(String dono, Double saldo) {
 
 		titular = new Conta(dono, 1, 0.0, saldo);
 
 	}
 
-	@Dado("^a conta do favorecido \"(.*?)\" de saldo(\\d+)$")
+	@Dado("^a conta do favorecido \"([^\"]*)\" de saldo (\\d+)$")
 	public void criaFavorecido(String dono, Double saldo) {
 
 		favorecido = new Conta(dono, 2, 0.0, saldo);
 
 	}
 
-	@Quando("^o titular transferir o valor de (\\d+) na conta$")
+	@Quando("^o titular transferir o valor de (\\d+) para o favorecido$")
 	public void transferi(Double valor) {
 
 		boolean transferiu = titular.transfere(valor, favorecido);
@@ -40,7 +41,7 @@ public class TransferenciaSteps {
 
 	}
 
-	@Entao("^Entao o saldo da conta do titular tera o saldo de(\\d+)$")
+	@Entao("^o saldo da conta do titular tera o saldo de (\\d+)$")
 	public void saldoTitular(Double saldoEsperado) {
 		Assert.assertEquals(saldoEsperado, titular.getSaldo());
 
