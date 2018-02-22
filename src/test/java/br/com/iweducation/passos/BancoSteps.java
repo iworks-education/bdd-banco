@@ -29,7 +29,7 @@ public class BancoSteps {
 
     @When("^o total de contas e (\\d+)$")
     public void o_total_de_contas_e(int totalContasEsperado) throws Throwable {
-          assertEquals("O calculo do total de contas está incorreto", 
+          assertEquals("O calculo do total de contas esta incorreto", 
           totalContasEsperado, totalContas);
     }
 
