@@ -4,8 +4,8 @@ public class Conta {
 
 	private String dono;
 	private Integer numero;
-	private Double saldo;
-	private Double limite;
+	private Double saldo = 0.0;
+	private Double limite = 0.0;
 
 	public Conta(String dono, int numero, Double limite, Double saldo) {
 		this.dono = dono;
@@ -16,8 +16,8 @@ public class Conta {
 	}
 
 	public boolean sacar(Double valor) {
-		if (saldo <= valor) {
-			// Não pode sacar
+		if ((saldo + limite) < valor) {
+			// Nao pode sacar
 			return false;
 		} else {
 			// Pode sacar
@@ -26,16 +26,8 @@ public class Conta {
 		}
 	}
 
-	public boolean depositar(Double quantidade) {
-
-		if (limite <= quantidade + saldo) {
-			// Não pode depositar
-			return false;
-		} else {
-			// Pode depositar
-			saldo += quantidade;
-			return true;
-		}
+	public void depositar(Double quantidade) {
+		saldo += quantidade;
 	}
 
 	public String getDono() {
@@ -55,7 +47,7 @@ public class Conta {
 	}
 
 	public Double getSaldo() {
-		return saldo;
+		return saldo + limite;
 	}
 
 	public void setSaldo(Double saldo) {
@@ -68,6 +60,17 @@ public class Conta {
 
 	public void setLimite(Double limite) {
 		this.limite = limite;
+	}
+
+	public boolean transfere(Double valor, Conta favorecido) {
+
+		if (this.sacar(valor)) {
+
+			favorecido.depositar(valor);
+			return true;
+		}
+
+		return false;
 	}
 
 }

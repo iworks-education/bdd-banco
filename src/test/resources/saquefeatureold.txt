@@ -1,0 +1,10 @@
+# language: pt
+@ContaTestRunner
+Funcionalidade: Saque de um determinado valor da conta
+Regras: O Saldo disponível da conta é composto pelo saldo atual mais o limite, 
+portanto um saque pode ser realizado caso seja menor ou igual ao saldo mais limite.
+
+Cenario: Saque realizado com sucesso
+	Dado uma conta do dono "Peterson" de numero 12345 com o limite 200 e saldo 50
+	Quando o dono realizar o saque no valor de 50 na conta
+	Entao o dono tera o saldo no valor de 200 na conta

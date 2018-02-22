@@ -1,19 +1,18 @@
-# language: pt
 @BancoTestRunner
-Funcionalidade: Testar as operacoes basicas de banco
+Feature: Testar as operacoes basicas de banco
   O sistema deve prover operações básicas de banco de forma correta.
   
-  Contexto: Cria todas as contas e associa ao banco
-    Dado que as contas sao do "Banco do Brasil"
-      | dono                       | numero | saldo |
-      | Abias Corpus Da Silva      | 111    | 100   |
-      | Antônio Morrendo das Dores | 222    | 200   |
-      | Carabino Tiro Certo        | 333    | 200   |
+  Background: Cria todas as contas e associa ao banco
+    Given que as contas sao do "Banco do Brasil"
+      | dono                       | numero | saldo |limite|
+      | Peterson Larentis          | 379    | 200   |0		 |
+      | Jorge Perillo              | 351    | 800   |0		 |
+      | Heitor Roriz               | 555    | 9000  |0		 |
   
-  Cenario: Verifica o total de contas criadas
-    Dado o calculo do total de contas criadas
-    Entao o total de contas e 3
+  Scenario: Verifica o total de contas criadas
+    Given  o calculo do total de contas criadas
+    Then  o total de contas e 3
   
-  Cenario: Verifica o total de dinheiro no banco
-    Dado o calculo do total de dinheiro
-    Entao o total de dinheiro no banco e 500
+  Scenario: Verifica o total de dinheiro no banco
+    Given o calculo do total de dinheiro
+    Then o total de dinheiro no banco e 10000
